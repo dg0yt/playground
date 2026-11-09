@@ -5,6 +5,8 @@ jobs:
   my_job:
     name: test job
     runs-on: ubuntu-24.04
+    permissions:
+      contents: write
     steps:
     - name: checkout
       uses: actions/checkout@v6.1.0
@@ -15,4 +17,3 @@ jobs:
         echo "hello world" > OUTFILE
         gh release create --draft my-release
         gh release upload my-release OUTFILE
-        
