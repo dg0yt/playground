@@ -7,6 +7,8 @@ jobs:
     runs-on: ubuntu-24.04
     steps:
     - name: run script
+      env:
+        GH_TOKEN: ${{ github.token }}
       run: |
         echo "hello world" > OUTFILE
         gh release create --draft my-release
