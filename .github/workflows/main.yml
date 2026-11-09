@@ -6,7 +6,9 @@ jobs:
     name: test job
     runs-on: ubuntu-24.04
     steps:
-    - name: npm install, build and test
+    - name: run script
       run: |
-        echo "hello world" > OUT
+        echo "hello world" > OUTFILE
+        gh release create --draft my-release
+        gh release upload my-release OUTFILE
         
