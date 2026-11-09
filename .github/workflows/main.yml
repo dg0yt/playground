@@ -6,6 +6,8 @@ jobs:
     name: test job
     runs-on: ubuntu-24.04
     steps:
+    - name: checkout
+      uses: actions/checkout@v6.1.0
     - name: run script
       env:
         GH_TOKEN: ${{ github.token }}
