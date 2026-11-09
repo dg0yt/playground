@@ -14,6 +14,8 @@ jobs:
       env:
         GH_TOKEN: ${{ github.token }}
       run: |
-        echo "hello world" > OUTFILE
-        gh release create --draft my-release
-        gh release upload my-release OUTFILE || gh release view my-release
+        gh release view my-release --json assets || {
+          gh release create --draft my-release
+          echo "hello world" > OUTFILE
+          gh release upload my-release OUTFILE
+        }
