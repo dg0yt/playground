@@ -1,0 +1,12 @@
+on:
+  workflow_dispatch:
+
+jobs:
+  my_job:
+    name: test job
+    runs-on: ubuntu-24.04
+    steps:
+    - name: npm install, build and test
+      run: |
+        echo "hello world" > OUT
+        
