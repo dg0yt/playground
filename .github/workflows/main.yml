@@ -16,4 +16,4 @@ jobs:
       run: |
         echo "hello world" > OUTFILE
         gh release create --draft my-release
-        gh release upload my-release OUTFILE || gh release view
+        gh release upload my-release OUTFILE || gh release view my-release
