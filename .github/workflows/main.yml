@@ -1,5 +1,9 @@
 on:
   workflow_dispatch:
+    inputs:
+      upload-assets:
+        type: boolean
+        default: false
 
 jobs:
   generate:
@@ -15,9 +19,10 @@ jobs:
 
   upload:
     name: Upload
-    environment: Release
+    if: inputs.upload-assets
     needs: generate
     runs-on: ubuntu-24.04
+    environment: Release
     permissions:
       contents: write
     steps:
