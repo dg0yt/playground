@@ -2,20 +2,28 @@ on:
   workflow_dispatch:
 
 jobs:
-  my_job:
-    name: test job
+  generate:
+    name: Generate
     runs-on: ubuntu-24.04
-    permissions:
-      contents: write
+    permissions: {}
     steps:
     - name: checkout
       uses: actions/checkout@v6.1.0
     - name: run script
+      run: |
+        echo "hello world" > OUTFILE
+
+  upload:
+    name: Upload
+    environment: Release
+    needs: generate
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: write
+    steps:
+    - name: run script
       env:
         GH_TOKEN: ${{ github.token }}
       run: |
-        gh release view my-release --json assets || {
-          gh release create --draft my-release
-          echo "hello world" > OUTFILE
-          gh release upload my-release OUTFILE
-        }
+        gh release create --draft my-release || true
+        gh release upload my-release OUTFILE
