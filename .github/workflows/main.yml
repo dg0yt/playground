@@ -30,8 +30,7 @@ jobs:
     needs: generate
     runs-on: ubuntu-24.04
     environment: Release
-    permissions:
-      contents: write
+    permissions: {}
     steps:
     - name: checkout
       uses: actions/checkout@v6.1.0
@@ -44,7 +43,7 @@ jobs:
         key: 12345
     - name: run script
       env:
-        GH_TOKEN: ${{ github.token }}
+        GH_TOKEN: ${{ secrets.MAPPER_VCPKG }}
       run: |
-        gh release create --draft my-release || true
-        gh release upload my-release OUTFILE
+        gh release --repo dg0yt/Mapper-vcpkg create --draft my-release || true
+        gh release --repo dg0yt/Mapper-vcpkg upload my-release OUTFILE
