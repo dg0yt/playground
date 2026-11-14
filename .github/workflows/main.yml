@@ -16,6 +16,13 @@ jobs:
     - name: run script
       run: |
         echo "hello world" > OUTFILE
+    - name: Save output
+      id: save-output
+      uses: actions/cache/save@v6
+      with:
+        path: |
+          OUTFILE
+        key: 12345
 
   upload:
     name: Upload
@@ -26,6 +33,13 @@ jobs:
     permissions:
       contents: write
     steps:
+    - name: Restore output
+      id: restore-output
+      uses: actions/cache/restore@v6
+      with:
+        path: |
+          OUTFILE
+        key: 12345
     - name: run script
       env:
         GH_TOKEN: ${{ github.token }}
