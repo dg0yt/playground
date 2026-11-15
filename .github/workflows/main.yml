@@ -16,6 +16,7 @@ jobs:
     - name: run script
       run: |
         echo "hello world" > OUTFILE
+        echo "${{ hashFiles('.github/WORKFLOW_LABEL') }}"
     - name: Save output
       id: save-output
       uses: actions/cache/save@v6
