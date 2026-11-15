@@ -16,7 +16,13 @@ jobs:
     - name: run script
       run: |
         echo "hello world" > OUTFILE
-        echo "WORKFLOW_LABEL=${{ hashFiles('.github/WORKFLOW_LABEL') }}"
+        if test -f .github/WORKFLOW_LABEL && grep -q "vcpkg" .github/WORKFLOW_LABEL
+        then
+          echo WORKFLOW_LABEL=vcpkg
+        else
+          echo WORKFLOW_LABEL=mapper
+        fi |
+          tee -a "$GITHUB_OUTPUT"
     - name: Save output
       id: save-output
       uses: actions/cache/save@v6
