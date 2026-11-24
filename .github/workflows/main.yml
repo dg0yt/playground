@@ -5,6 +5,9 @@ on:
         type: boolean
         default: false
 
+env:
+  ENABLE_UPLOAD: ${{ vars.ENABLE_UPLOAD }}
+
 jobs:
   generate:
     name: Generate
