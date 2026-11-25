@@ -26,7 +26,7 @@ jobs:
           tee -a "$GITHUB_OUTPUT"
         which sdkmanager || true
         echo ":: $SDKMANAGER"
-        $ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager --install "platform;28"
+        $ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager --install "platform;android-28"
     - name: Save output
       id: save-output
       uses: actions/cache/save@v6
